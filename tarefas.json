@@ -1,0 +1,7 @@
+{
+    "tarefas":[
+        {"nome":"lavar a louça","status":"pendente"},
+        {"nome":"fazer exercicio","status":"pendente"},
+        {"nome":"tomar água","status":"concluida"}
+    ]
+}
