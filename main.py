@@ -1,5 +1,6 @@
 import json
 from InquirerPy import inquirer
+import os
 
 def loaddados(arquivo):
     try:
@@ -25,6 +26,23 @@ def menu():
     ).execute()
     return choices
 
+def listtodo(tarefas): 
+    if not tarefas["tarefas"]:
+        print("\nnenhuma tarefa atribuida")
+    else:
+        for i,tarefa in enumerate(tarefas["tarefas"],start=1):
+            status = "✔️" if tarefa["status"] == "concluida" else "❌"
+            print(f"{i}. {tarefa['nome']} - {status}")
+
+def addtodo(tarefas): 
+    pass
+
+def marktodo(tarefas): 
+    pass
+
+def removetodo(tarefas): 
+    pass
+
 def main():
     arquivo = "tarefas.json"
     tarefas = loaddados(arquivo)
@@ -33,7 +51,8 @@ def main():
         opcao = menu()
         match opcao:
             case 1:
-                print("você escolheu a primeira opção")
+                os.system("cls")      
+                listtodo(tarefas)
             case 2:
                 print("você escolheu a segunda opção")
             case 3:
