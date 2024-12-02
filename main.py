@@ -35,10 +35,21 @@ def listtodo(tarefas):
             print(f"{i}. {tarefa['nome']} - {status}")
 
 def addtodo(tarefas): 
-    pass
+    nome = input("digite sua tarefa: ")
+    tarefas["tarefas"].append({"nome":nome,"status":"pendente"})
+    print(f"tarefa '{nome}' adicionada")
 
 def marktodo(tarefas): 
-    pass
+    listtodo(tarefas)
+    try:
+        indice = int(input("\nDigite o número da tarefa para concluir: ")) - 1
+        if 0 <= indice < len(tarefas["tarefas"]):
+            tarefas["tarefas"][indice]["status"] = "concluida"
+            print("tarefa marcada")
+        else:
+            print("numero invalido")
+    except ValueError:
+        print("entrada invalida")
 
 def removetodo(tarefas): 
     pass
@@ -54,12 +65,15 @@ def main():
                 os.system("cls")      
                 listtodo(tarefas)
             case 2:
-                print("você escolheu a segunda opção")
+                os.system("cls")
+                addtodo(tarefas)
             case 3:
-                print("você escolheu a terceira opção")
+                os.system("cls")
+                marktodo(tarefas)
             case 4:
                 print("você escolheu a quarta opção")
             case 5:
+                os.system("cls")
                 print("saindo...")
                 break
 
