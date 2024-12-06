@@ -11,7 +11,7 @@ def loaddados(arquivo):
     
 def savetodo(arquivo,tarefas):
     with open(arquivo,"w") as f:
-        json.dump(tarefas, f, ident=4)
+        json.dump(tarefas, f, indent=4)
 
 def menu():
     choices = inquirer.select(
@@ -21,9 +21,9 @@ def menu():
             {"name":"2. adicionar tarefas","value":2},
             {"name":"3. marcar tarefa como concluída","value":3},
             {"name":"4. remover tarefa","value":4},
-            {"name":"5. sair","value":5}
-        ]
-    ).execute()
+            {"name":"5. sair","value":5},
+            {"name":"6. Sair sem salvar","value":6}
+        ]).execute()
     return choices
 
 def listtodo(tarefas): 
@@ -35,9 +35,9 @@ def listtodo(tarefas):
             print(f"{i}. {tarefa['nome']} - {status}")
 
 def addtodo(tarefas): 
-    nome = input("digite sua tarefa: ")
-    tarefas["tarefas"].append({"nome":nome,"status":"pendente"})
-    print(f"tarefa '{nome}' adicionada")
+    nome = input("Digite o nome da tarefa: ")
+    tarefas["tarefas"].append({"nome": nome, "status": "pendente"})
+    print(f"Tarefa '{nome}' adicionada com sucesso!")
 
 def marktodo(tarefas): 
     listtodo(tarefas)
@@ -61,8 +61,8 @@ def main():
     while True:
         opcao = menu()
         match opcao:
-            case 1:
-                os.system("cls")      
+            case 1:      
+                os.system("cls")
                 listtodo(tarefas)
             case 2:
                 os.system("cls")
@@ -71,11 +71,30 @@ def main():
                 os.system("cls")
                 marktodo(tarefas)
             case 4:
+                os.system("cls")
                 print("você escolheu a quarta opção")
             case 5:
                 os.system("cls")
+                savetodo(arquivo,tarefas)
                 print("saindo...")
                 break
+            case 6:
+                os.system("cls")
+                yorn = inquirer.select(
+                    message="tem certeza que quer sair sem salvar?",
+                    choices=[
+                        {"name":"Sim","value":True},
+                        {"name":"Não","value":False}
+                    ]
+                ).execute()
+
+                if yorn:
+                    os.system("cls")
+                    print("Saindo...")
+                    break
+                else:
+                    os.system("cls")
+                    pass
 
 if __name__ == "__main__":
     main()

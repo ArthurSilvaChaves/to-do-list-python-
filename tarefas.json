@@ -1,7 +1,16 @@
 {
-    "tarefas":[
-        {"nome":"lavar a louça","status":"pendente"},
-        {"nome":"fazer exercicio","status":"pendente"},
-        {"nome":"tomar água","status":"concluida"}
+    "tarefas": [
+        {
+            "nome": "lavar a louca",
+            "status": "pendente"
+        },
+        {
+            "nome": "fazer exercicio",
+            "status": "concluida"
+        },
+        {
+            "nome": "tomar agua",
+            "status": "concluida"
+        }
     ]
 }
