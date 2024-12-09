@@ -7,10 +7,6 @@
         {
             "nome": "fazer exercicio",
             "status": "concluida"
-        },
-        {
-            "nome": "tomar agua",
-            "status": "concluida"
         }
     ]
 }

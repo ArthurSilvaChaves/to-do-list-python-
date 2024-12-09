@@ -36,8 +36,11 @@ def listtodo(tarefas):
 
 def addtodo(tarefas): 
     nome = input("Digite o nome da tarefa: ")
-    tarefas["tarefas"].append({"nome": nome, "status": "pendente"})
-    print(f"Tarefa '{nome}' adicionada com sucesso!")
+    if nome:
+        tarefas["tarefas"].append({"nome": nome, "status": "pendente"})
+        print(f"Tarefa '{nome}' adicionada com sucesso!")
+    else:
+        print("escreva alguma coisa no campo")
 
 def marktodo(tarefas): 
     listtodo(tarefas)
@@ -52,7 +55,16 @@ def marktodo(tarefas):
         print("entrada invalida")
 
 def removetodo(tarefas): 
-    pass
+    listtodo(tarefas)
+    try:
+        indice = int(input("numero da  tarefa que será apagada: ")) - 1
+        if 0 <= indice < len(tarefas["tarefas"]):
+            removida = tarefas["tarefas"].pop(indice)
+            print(f"tarefa '{removida['nome']}' removida")
+        else:
+            print("numero invalido")
+    except ValueError:
+        print("entrada invalida")
 
 def main():
     arquivo = "tarefas.json"
@@ -72,7 +84,7 @@ def main():
                 marktodo(tarefas)
             case 4:
                 os.system("cls")
-                print("você escolheu a quarta opção")
+                removetodo(tarefas)
             case 5:
                 os.system("cls")
                 savetodo(arquivo,tarefas)
