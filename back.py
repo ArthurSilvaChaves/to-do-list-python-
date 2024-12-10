@@ -1,7 +1,6 @@
 import json
-from InquirerPy import inquirer
-import os
 import customtkinter as ctk
+import front
 
 def loaddados():
     arquivo = "tarefas.json"
@@ -15,19 +14,6 @@ def loaddados():
 def savetodo(arquivo,dados):
     with open(arquivo,"w") as f:
         json.dump(dados, f, indent=4)
-
-def menu():
-    choices = inquirer.select(
-        message="escolha uma ação",
-        choices=[
-            {"name":"1. listar tarefas","value":1},
-            {"name":"2. adicionar tarefas","value":2},
-            {"name":"3. marcar tarefa como concluída","value":3},
-            {"name":"4. remover tarefa","value":4},
-            {"name":"5. sair","value":5},
-            {"name":"6. Sair sem salvar","value":6}
-        ]).execute()
-    return choices
 
 def listtodo(tarefas): 
     if not tarefas["tarefas"]:
@@ -70,6 +56,18 @@ def removetodo(tarefas):
         print("entrada invalida")
 
 def login():
+    def verilogin():
+        usuario = usuarioent.get()
+        senha = senhaent.get()
+        dados = loaddados()
+
+
+        if usuario in dados["usuarios"] and dados["usuarios"][usuario]["senha"] == senha:
+            loginscreen.destroy()
+            front.main()
+        else:
+            pass
+    
     ctk.set_default_color_theme("green")
     
     loginscreen = ctk.CTk()
@@ -83,7 +81,7 @@ def login():
     senhaent = ctk.CTkEntry(loginscreen,placeholder_text="Senha",font=("Consolas",16),width=200)
     senhaent.pack(pady=5)
 
-    loginbtn = ctk.CTkButton(loginscreen,text="Entrar",font=("Calibri",16))
+    loginbtn = ctk.CTkButton(loginscreen,text="Entrar",font=("Calibri",16),command=verilogin)
     loginbtn.pack(pady=5)
 
     createaccontbtn = ctk.CTkButton(loginscreen,text="Criar Conta",font=("Calibri",16))
