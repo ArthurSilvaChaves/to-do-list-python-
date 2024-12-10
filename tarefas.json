@@ -1,12 +1,18 @@
 {
-    "tarefas": [
-        {
-            "nome": "lavar a louca",
-            "status": "pendente"
+    "usuarios":{
+        "arthur":{
+            "senha":"1234",
+            "tarefas":[
+                {"nome":"lavar a louça","status":"pendente"},
+                {"nome":"fazer exercicios","status":"concluido"}
+            ]
         },
-        {
-            "nome": "fazer exercicio",
-            "status": "concluida"
+        "teste":{
+            "senha":"teste",
+            "tarefas":[
+                {"nome":"tomar agua","status":"pendente"},
+                {"nome":"dar comida pro cachorro","status":"concluido"}
+            ]
         }
-    ]
+    }
 }

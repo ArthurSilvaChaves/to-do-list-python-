@@ -1,17 +1,20 @@
 import json
 from InquirerPy import inquirer
 import os
+import customtkinter as ctk
 
-def loaddados(arquivo):
+def loaddados():
+    arquivo = "tarefas.json"
+
     try:
         with open(arquivo,"r") as f:
             return json.load(f)
     except FileNotFoundError:
-        return {"tarefas":[]}
+        return {"usuarios":[]}
     
-def savetodo(arquivo,tarefas):
+def savetodo(arquivo,dados):
     with open(arquivo,"w") as f:
-        json.dump(tarefas, f, indent=4)
+        json.dump(dados, f, indent=4)
 
 def menu():
     choices = inquirer.select(
@@ -66,47 +69,27 @@ def removetodo(tarefas):
     except ValueError:
         print("entrada invalida")
 
-def main():
-    arquivo = "tarefas.json"
-    tarefas = loaddados(arquivo)
+def login():
+    ctk.set_default_color_theme("green")
     
-    while True:
-        opcao = menu()
-        match opcao:
-            case 1:      
-                os.system("cls")
-                listtodo(tarefas)
-            case 2:
-                os.system("cls")
-                addtodo(tarefas)
-            case 3:
-                os.system("cls")
-                marktodo(tarefas)
-            case 4:
-                os.system("cls")
-                removetodo(tarefas)
-            case 5:
-                os.system("cls")
-                savetodo(arquivo,tarefas)
-                print("saindo...")
-                break
-            case 6:
-                os.system("cls")
-                yorn = inquirer.select(
-                    message="tem certeza que quer sair sem salvar?",
-                    choices=[
-                        {"name":"Sim","value":True},
-                        {"name":"Não","value":False}
-                    ]
-                ).execute()
+    loginscreen = ctk.CTk()
+    loginscreen.title("Login")
+    loginscreen.geometry("300x200")
+    loginscreen.resizable(False,False)
 
-                if yorn:
-                    os.system("cls")
-                    print("Saindo...")
-                    break
-                else:
-                    os.system("cls")
-                    pass
+    usuarioent = ctk.CTkEntry(loginscreen,placeholder_text="Usuário",font=("Consolas",16),width=200)
+    usuarioent.pack(pady=5)
+
+    senhaent = ctk.CTkEntry(loginscreen,placeholder_text="Senha",font=("Consolas",16),width=200)
+    senhaent.pack(pady=5)
+
+    loginbtn = ctk.CTkButton(loginscreen,text="Entrar",font=("Calibri",16))
+    loginbtn.pack(pady=5)
+
+    createaccontbtn = ctk.CTkButton(loginscreen,text="Criar Conta",font=("Calibri",16))
+    createaccontbtn.pack(pady=5)
+
+    loginscreen.mainloop()
 
 if __name__ == "__main__":
-    main()
+    login()
