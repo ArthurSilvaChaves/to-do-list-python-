@@ -84,7 +84,7 @@ def login():
     loginbtn = ctk.CTkButton(loginscreen,text="Entrar",font=("Calibri",16),command=verilogin)
     loginbtn.pack(pady=5)
 
-    createaccontbtn = ctk.CTkButton(loginscreen,text="Criar Conta",font=("Calibri",16))
+    createaccontbtn = ctk.CTkButton(loginscreen,text="Criar Conta",font=("Calibri",16),command=front.createaccont)
     createaccontbtn.pack(pady=5)
 
     loginscreen.mainloop()
