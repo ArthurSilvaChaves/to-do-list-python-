@@ -6,6 +6,7 @@ loadarquivos = back.loaddados()
 
 def main():
     mainscreen = ctk.CTk()
+    
 
     mainscreen.mainloop()
 

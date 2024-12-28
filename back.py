@@ -55,7 +55,16 @@ def removetodo(tarefas):
     except ValueError:
         print("entrada invalida")
 
+
+
 def login():
+    def switchbuttondef():
+        if senhaent.cget('show') == "*":
+            senhaent.configure(show='')
+            switchbutton.configure(text="Ocultar Senha")
+        else:
+            senhaent.configure(show="*")
+            switchbutton.configure(text="Mostrar senha")
     def verilogin():
         usuario = usuarioent.get()
         senha = senhaent.get()
@@ -78,9 +87,12 @@ def login():
     usuarioent = ctk.CTkEntry(loginscreen,placeholder_text="Usuário",font=("Consolas",16),width=200)
     usuarioent.pack(pady=5)
 
-    senhaent = ctk.CTkEntry(loginscreen,placeholder_text="Senha",font=("Consolas",16),width=200)
+    senhaent = ctk.CTkEntry(loginscreen,placeholder_text="Senha",font=("Consolas",16),width=200,show="*")
     senhaent.pack(pady=5)
 
+    switchbutton = ctk.CTkButton(loginscreen,text="Mostrar Senha",font=("Calibri",16),command=switchbuttondef)
+    switchbutton.pack(pady=5)
+    
     loginbtn = ctk.CTkButton(loginscreen,text="Entrar",font=("Calibri",16),command=verilogin)
     loginbtn.pack(pady=5)
 
